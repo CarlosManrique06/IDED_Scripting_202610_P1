@@ -128,13 +128,107 @@
 
             return false;
         }
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public static int FindPrime(in Stack<int> list) => 0;
+        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        public static int FindPrime(in Stack<int> list)
+        {
+            Stack<int> temp = new Stack<int>();
+            int primoEncontrado = 0;
 
-        public static bool IsPrime(int n) => false;
+            // Buscar primo
+            while (list.Count > 0)
+            {
+                int elemento = list.Pop();
+                temp.Push(elemento);
 
-        public static Stack<int> RemoveFirstPrime(in Stack<int> stack) => null;
+                if (primoEncontrado == 0 && IsPrime(elemento))
+                {
+                    primoEncontrado = elemento;
+                }
+            }
 
-        public static Queue<int> QueueFromStack(Stack<int> stack) => null;
+            // Restaurar pila 
+            while (temp.Count > 0)
+            {
+                list.Push(temp.Pop());
+            }
+
+            return primoEncontrado;
+        }
+
+        public static bool IsPrime(int n)
+        {
+            if (n <= 1)
+                return false;
+
+            for (int i = 2; i <= Math.Sqrt(n); i++)
+            {
+                if (n % i == 0)
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static Stack<int> RemoveFirstPrime(in Stack<int> stack)
+        {
+            Stack<int> temp = new Stack<int>();
+            int EliminarPrimo = -1;
+
+            // Encontrar cuál es el primer primo
+            while (stack.Count > 0)
+            {
+                int elemento = stack.Pop();
+                temp.Push(elemento);
+
+                if (EliminarPrimo == -1 && IsPrime(elemento))
+                {
+                   EliminarPrimo = elemento;
+                }
+            }
+
+            // Restaurar stack sin el primo
+            Stack<int> resultado = new Stack<int>();
+            bool yaElimine = false;
+
+            while (temp.Count > 0)
+            {
+                int elemento = temp.Pop();
+                stack.Push(elemento);
+
+                if (elemento == EliminarPrimo && !yaElimine)
+                {
+                    yaElimine = true;
+                   
+                }
+                else
+                {
+                    resultado.Push(elemento);
+                }
+            }
+
+            return resultado;
+        }
+
+        public static Queue<int> QueueFromStack(Stack<int> stack)
+        {
+            Stack<int> temp = new Stack<int>();
+            Queue<int> cola = new Queue<int>();
+
+            // Desapilar 
+            while (stack.Count > 0)
+            {
+                temp.Push(stack.Pop());
+            }
+
+            // Pasar a cola 
+            while (temp.Count > 0)
+            {
+                int elemento = temp.Pop();
+                cola.Enqueue(elemento);
+                stack.Push(elemento);
+            }
+
+            return cola;
+        }
     }
 }
