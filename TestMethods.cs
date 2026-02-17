@@ -2,6 +2,7 @@
 {
     internal class TestMethods
     {
+        //---------------------------------------------------------------------------------------------------------------------------
        public static void SeparateElements(Queue<int> input, out Stack<int> included, out Stack<int> excluded)
         {
             included = new Stack<int>();
@@ -66,9 +67,11 @@
 
             return false;
         }
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public static List<int> GenerateSortedSeries(int n) => null;
 
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------
         public static bool FindNumberInSortedList(int target, in List<int> list)
         {
             
@@ -94,7 +97,7 @@
 
             return false;
         }
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         public static int FindPrime(in Stack<int> list) => 0;
 
         public static bool IsPrime(int n) => false;
