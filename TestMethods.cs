@@ -68,7 +68,38 @@
             return false;
         }
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public static List<int> GenerateSortedSeries(int n) => null;
+       public static List<int> GenerateSortedSeries(int n)
+{
+    List<int> result = new List<int>();
+
+    if (n <= 0)
+    {
+        return result;
+    }
+
+    for (int i = 1; i <= n; i++)
+    {
+        int value = i * i;
+
+        if (i % 2 != 0) // impar → negativo
+        {
+            value = -value;
+        }
+
+        // Insertar manualmente en orden ascendente
+        int position = 0;
+
+        while (position < result.Count && result[position] < value)
+        {
+            position++;
+        }
+
+        result.Insert(position, value);
+    }
+
+    return result;
+}
+
         
 
 
