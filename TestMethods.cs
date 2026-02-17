@@ -12,7 +12,7 @@
 
         public static bool FindNumberInSortedList(int target, in List<int> list)
         {
-            // Ordenamiento descendente manual (Burbuja)
+            
             for (int i = 0; i < list.Count - 1; i++)
             {
                 for (int j = 0; j < list.Count - 1 - i; j++)
